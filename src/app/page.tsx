@@ -3,10 +3,6 @@
 import { useState } from "react";
 import { getPlayerData } from "./actions";
 import { PlayerData } from "../types/player";
-import MainDisplay from "@/components/MainDisplay";
-import PlayerDetails from "@/components/PlayerDetails";
-import SearchBar from "@/components/SearchBar";
-import ArenaImg from "@/components/ArenaImg";
 
 export default function Home() {
   const [playerTag, setPlayerTag] = useState("PQ0RJY0JL");
@@ -56,7 +52,7 @@ export default function Home() {
     }
   };
 
-  function getLeagueName(leagueNumber) {
+  function getLeagueName(leagueNumber: number | undefined) {
     switch (leagueNumber) {
       case 1:
         return "Challenger 1";
