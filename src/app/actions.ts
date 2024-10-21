@@ -23,9 +23,19 @@ export async function getPlayerData(playerTag: string): Promise<PlayerData> {
     return response.data;
   } catch (error) {
     console.error("Detailed error:", error);
+
     if (axios.isAxiosError(error)) {
       console.error("Axios error details:", error.response?.data);
+    } else if (error instanceof Error) {
+      console.error("Standard error message:", error.message);
+    } else {
+      console.error("Unknown error:", error);
     }
-    throw new Error(`Failed to fetch player data: ${error.message}`);
+
+    throw new Error(
+      `Failed to fetch player data: ${
+        error instanceof Error ? error.message : "Unknown error"
+      }`
+    );
   }
 }

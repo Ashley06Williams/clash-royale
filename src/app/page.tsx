@@ -7,16 +7,16 @@ import { PlayerData } from "../types/player";
 export default function Home() {
   const [playerTag, setPlayerTag] = useState("PQ0RJY0JL");
   const [playerData, setPlayerData] = useState<PlayerData | null>(null);
-  const [isLoading, setIsLoading] = useState(false);
+  // const [isLoading, setIsLoading] = useState(false);
 
   async function handleSubmit(formData: FormData) {
-    setIsLoading(true);
+    // setIsLoading(true);
     const tag = formData.get("playerTag") as string;
     const formattedTag = tag.replace("#", "");
     try {
       const data = await getPlayerData(formattedTag);
       setPlayerData(data);
-      setIsLoading(false);
+      // setIsLoading(false);
     } catch (error) {
       console.error("Error fetching player data:", error);
     }
