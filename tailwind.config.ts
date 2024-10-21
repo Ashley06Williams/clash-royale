@@ -11,6 +11,14 @@ const config: Config = {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        blue: {
+          DEFAULT: "#131B30",
+          light: "#2F3D60",
+          clash: "#023CDE",
+        },
+        purple: "#9BA5E2",
+
+        red: "#D82366",
       },
     },
   },
