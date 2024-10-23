@@ -87,7 +87,7 @@ export default function Home() {
 
   return (
     <div className="flex h-screen w-screen bg-gradient-to-r from-red to-blue-clash items-center justify-center ">
-      <div className="bg-blue h-[800px] md:h-[550px] w-full  md:w-3/4 rounded-3xl shadow-2xl p-2 mt-2">
+      <div className="bg-blue h-[800px] md:h-[550px] w-full  md:w-3/4 lg:w-1/2 rounded-3xl shadow-2xl p-2 mt-2">
         <div className="SEARCH-BAR h-24 w-full p-4">
           <form
             action={handleSubmit}
