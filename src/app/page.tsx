@@ -86,8 +86,8 @@ export default function Home() {
   console.log(leagueName); // Outputs the corresponding league name
 
   return (
-    <div className="flex h-screen w-screen bg-gradient-to-r from-red to-blue-clash items-center justify-center">
-      <div className="bg-blue h-[700px] w-full  md:w-1/2 rounded-3xl shadow-2xl p-2">
+    <div className="flex h-screen w-screen bg-gradient-to-r from-red to-blue-clash items-center justify-center ">
+      <div className="bg-blue h-[800px] md:h-[550px] w-full  md:w-3/4 rounded-3xl shadow-2xl p-2 mt-2">
         <div className="SEARCH-BAR h-24 w-full p-4">
           <form
             action={handleSubmit}
@@ -127,12 +127,12 @@ export default function Home() {
                   </h2>
                 </div>
                 <div>
-                  <div className="w-14 h-14 rounded-full bg-blue-light flex items-center justify-center text-white font-bold text-[23px]">
+                  <div className="w-14 h-14 rounded-full bg-blue-light flex items-center justify-center text-white font-bold text-[23px] mt-12 md:mt-0">
                     {playerData.expLevel}
                   </div>
                 </div>
               </div>
-              <div className="flex items-center justify-center">
+              <div className="flex items-center justify-center mt-0 md:-mt-4">
                 <div className="flex flex-col items-center">
                   <img
                     src={imageDisplay()}
@@ -140,7 +140,7 @@ export default function Home() {
                     className="mt-6"
                   />
 
-                  <h3 className="mt-2 text-[35px] font-semibold">
+                  <h3 className="mt-1 text-[35px] font-semibold">
                     {getLeagueName(
                       playerData.currentPathOfLegendSeasonResult.leagueNumber
                     )}
@@ -149,9 +149,9 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="flex mt-8 h-full items-center justify-center space-x-4 mx-3">
-              <div className="flex flex-col items-center justify-center w-1/2 lg:w-1/3 ">
-                <div className=" bg-blue-light w-full mb-4 rounded-3xl  h-[80px] md:[85px]">
+            <div className="flex mt-8 md:-mt-60 h-full items-center justify-center md:justify-between space-x-4 mx-3">
+              <div className="flex flex-col items-center justify-center w-1/2 lg:w-1/4 ">
+                <div className=" bg-blue-light w-full mb-4 md:mb-8 rounded-3xl  h-[80px] md:[85px]">
                   <p className="pl-3 pt-2 font-extralight text-[15px] md:text-[17px] ">
                     Wins:{" "}
                   </p>
@@ -164,24 +164,24 @@ export default function Home() {
 
                 <div className=" bg-blue-light w-full rounded-3xl h-[80px] md:[85px]">
                   <p className="pl-3 pt-2 font-extralight text-[15px] md:text-[17px]">
-                    Clan:{" "}
+                    Losses:{" "}
                   </p>
                   <div className="-mt-2 ml-2 flex w-full items-center justify-center ">
                     <p className="text-center text-white font-bold text-[35px]">
-                      {playerData.clan?.name || "No Clan"}
+                      {playerData.losses}
                     </p>
                   </div>
                 </div>
               </div>
 
-              <div className="flex flex-col items-center justify-center w-1/2 lg:w-1/3">
-                <div className=" bg-blue-light w-full mb-4 rounded-3xl h-[80px] md:[85px]">
+              <div className="flex flex-col items-center justify-center w-1/2 lg:w-1/4">
+                <div className=" bg-blue-light w-full mb-4 md:mb-8 rounded-3xl h-[80px] md:[85px]">
                   <p className="pl-3 pt-2 font-extralight text-[15px] md:text-[17px]">
-                    Losses:{" "}
+                    Clan:{" "}
                   </p>
                   <div className="-mt-2 ml-2 flex w-full items-center justify-center">
                     <p className="text-center text-white font-bold text-[35px]">
-                      {playerData.losses}
+                      {playerData.clan?.name || "No Clan"}
                     </p>
                   </div>
                 </div>
