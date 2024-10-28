@@ -126,8 +126,8 @@ export default function Home() {
                 value={playerTag}
                 name="playerTag"
                 type="text"
-                className="bg-blue bg-opacity-0 w-4/5 lg:w-2/4 p-3 lg:p-4 text-white outline-none"
-                placeholder="Player Tag"
+                className="bg-blue bg-opacity-0 p-3 lg:p-4 text-white outline-none"
+                placeholder="Enter Player Tag #"
               />
             </div>
 
