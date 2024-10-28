@@ -1,54 +1,78 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { getPlayerData } from "./actions";
 import { PlayerData } from "../types/player";
 
 export default function Home() {
   const [playerTag, setPlayerTag] = useState("PQ0RJY0JL");
   const [playerData, setPlayerData] = useState<PlayerData | null>(null);
-  // const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
+  //Function run upon page reload
+  useEffect(() => {
+    const formData = new FormData();
+    formData.append("playerTag", playerTag);
+    handleSubmit(formData);
+    //Function runs once upon page reload
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  //function runs upon search button click
   async function handleSubmit(formData: FormData) {
-    // setIsLoading(true);
+    setIsLoading(true);
     const tag = formData.get("playerTag") as string;
     const formattedTag = tag.replace("#", "");
     try {
       const data = await getPlayerData(formattedTag);
       setPlayerData(data);
-      // setIsLoading(false);
+      setIsLoading(false);
     } catch (error) {
       console.error("Error fetching player data:", error);
     }
   }
 
   const imageDisplay = () => {
-    console.log(
-      "Image Path:",
-      playerData?.currentPathOfLegendSeasonResult.leagueNumber
-    );
-    if (playerData?.currentPathOfLegendSeasonResult.leagueNumber === 1) {
-      return "/challeng.svg";
-    } else if (playerData?.currentPathOfLegendSeasonResult.leagueNumber === 2) {
-      return "/challenge2.png";
-    } else if (playerData?.currentPathOfLegendSeasonResult.leagueNumber === 3) {
-      return "/challenge3.png";
-    } else if (playerData?.currentPathOfLegendSeasonResult.leagueNumber === 4) {
-      return "/league4.png";
-    } else if (playerData?.currentPathOfLegendSeasonResult.leagueNumber === 5) {
-      return "/league5.png";
-    } else if (playerData?.currentPathOfLegendSeasonResult.leagueNumber === 6) {
-      return "/league6.png";
-    } else if (playerData?.currentPathOfLegendSeasonResult.leagueNumber === 7) {
-      return "League 9 image";
-    } else if (playerData?.currentPathOfLegendSeasonResult.leagueNumber === 8) {
-      return "/league8.png";
-    } else if (playerData?.currentPathOfLegendSeasonResult.leagueNumber === 9) {
-      return "/league9.png";
-    } else if (
-      playerData?.currentPathOfLegendSeasonResult.leagueNumber === 10
-    ) {
-      return "/league10.png";
+    if (playerData?.currentPathOfLegendSeasonResult?.leagueNumber) {
+      if (playerData?.currentPathOfLegendSeasonResult.leagueNumber === 1) {
+        return "/challeng.svg";
+      } else if (
+        playerData?.currentPathOfLegendSeasonResult.leagueNumber === 2
+      ) {
+        return "/challenge2.png";
+      } else if (
+        playerData?.currentPathOfLegendSeasonResult.leagueNumber === 3
+      ) {
+        return "/challenge3.png";
+      } else if (
+        playerData?.currentPathOfLegendSeasonResult.leagueNumber === 4
+      ) {
+        return "/league4.png";
+      } else if (
+        playerData?.currentPathOfLegendSeasonResult.leagueNumber === 5
+      ) {
+        return "/league5.png";
+      } else if (
+        playerData?.currentPathOfLegendSeasonResult.leagueNumber === 6
+      ) {
+        return "/league6.png";
+      } else if (
+        playerData?.currentPathOfLegendSeasonResult.leagueNumber === 7
+      ) {
+        return "League 9 image";
+      } else if (
+        playerData?.currentPathOfLegendSeasonResult.leagueNumber === 8
+      ) {
+        return "/league8.png";
+      } else if (
+        playerData?.currentPathOfLegendSeasonResult.leagueNumber === 9
+      ) {
+        return "/league9.png";
+      } else if (
+        playerData?.currentPathOfLegendSeasonResult.leagueNumber === 10
+      ) {
+        return "/league10.png";
+      }
     }
   };
 
@@ -75,7 +99,7 @@ export default function Home() {
       case 10:
         return "Ultimate Champion";
       default:
-        return "Unknown League";
+        return "You are not in a league";
     }
   }
 
@@ -102,16 +126,18 @@ export default function Home() {
                 value={playerTag}
                 name="playerTag"
                 type="text"
-                className="bg-blue bg-opacity-0 w-4/5 lg:w-2/4 p-3 lg:p-4 text-white"
-                placeholder="Player Tag"
+                className="bg-blue bg-opacity-0 p-3 lg:p-4 text-white outline-none"
+                placeholder="Enter Player Tag #"
               />
             </div>
 
             <button
-              className="w-1/3 lg:w-1/4 bg-purple p-3 rounded-3xl text-white "
+              className={`w-1/3 lg:w-1/4  p-3 rounded-3xl text-white ${
+                !isLoading ? "bg-purple" : "bg-blue-light"
+              }`}
               type="submit"
             >
-              Search
+              {!isLoading ? "Search" : "Searching..."}
             </button>
           </form>
         </div>
@@ -134,15 +160,11 @@ export default function Home() {
               </div>
               <div className="flex items-center justify-center mt-0 md:-mt-4">
                 <div className="flex flex-col items-center">
-                  <img
-                    src={imageDisplay()}
-                    alt="Image of your arena"
-                    className="mt-6"
-                  />
+                  <img src={imageDisplay()} alt="" className="mt-6 w-64 h-64" />
 
                   <h3 className="mt-1 text-[35px] font-semibold">
                     {getLeagueName(
-                      playerData.currentPathOfLegendSeasonResult.leagueNumber
+                      playerData.currentPathOfLegendSeasonResult?.leagueNumber
                     )}
                   </h3>
                 </div>
