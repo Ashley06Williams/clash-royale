@@ -117,7 +117,7 @@ export default function Home() {
             action={handleSubmit}
             className="flex justify-between items-center"
           >
-            <div className="flex items-center border border-white rounded-3xl px-2 md:px-6 w-[200px] md:w-[400px] ">
+            <div className="flex items-center border border-white rounded-3xl px-2 md:px-6 w-[200px] md:w-[400px] mt-8 md:mt-0">
               <img src="searxng.svg" alt="search" className="w-6 h-6" />
               <input
                 onChange={(e) => {
@@ -126,13 +126,13 @@ export default function Home() {
                 value={playerTag}
                 name="playerTag"
                 type="text"
-                className="bg-blue bg-opacity-0 p-3 lg:p-4 text-white outline-none"
+                className="bg-blue bg-opacity-0 p-3 lg:p-4 text-white outline-none "
                 placeholder="Enter Player Tag #"
               />
             </div>
 
             <button
-              className={`w-1/3 lg:w-1/4  p-3 rounded-3xl text-white ${
+              className={`w-1/3 lg:w-1/4  p-3 rounded-3xl text-white mt-8 md:mt-0 ${
                 !isLoading ? "bg-purple" : "bg-blue-light"
               }`}
               type="submit"
