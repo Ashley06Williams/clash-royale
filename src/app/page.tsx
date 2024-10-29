@@ -40,6 +40,7 @@ export default function Home() {
       setPlayerData(data);
       setIsLoading(false);
     } catch (error) {
+      setIsLoading(false);
       console.error("Error fetching player data:", error);
     }
   }
