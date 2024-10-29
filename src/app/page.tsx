@@ -8,6 +8,17 @@ export default function Home() {
   const [playerTag, setPlayerTag] = useState("PQ0RJY0JL");
   const [playerData, setPlayerData] = useState<PlayerData | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [suggestions, setSuggestions] = useState(false);
+
+  const handleClick = () => {
+    setSuggestions(true);
+  };
+
+  const handleSuggestionClick = (suggestedPlayer: string) => {
+    const formData = new FormData();
+    formData.append("playerTag", suggestedPlayer);
+    handleSubmit(formData);
+  };
 
   //Function run upon page reload
   useEffect(() => {
@@ -23,6 +34,7 @@ export default function Home() {
     setIsLoading(true);
     const tag = formData.get("playerTag") as string;
     const formattedTag = tag.replace("#", "");
+    setSuggestions(false);
     try {
       const data = await getPlayerData(formattedTag);
       setPlayerData(data);
@@ -111,7 +123,7 @@ export default function Home() {
 
   return (
     <div className="flex h-screen w-screen bg-gradient-to-r from-red to-blue-clash items-center justify-center ">
-      <div className="bg-blue h-[800px] md:h-[550px] w-full  md:w-3/4 lg:w-1/2 rounded-3xl shadow-2xl p-2 mt-2">
+      <div className="bg-blue h-screen md:h-[550px] w-full  md:w-3/4 lg:w-1/2 rounded-3xl shadow-2xl p-2 mt-2 pt-8 md:pt-4">
         <div className="SEARCH-BAR h-24 w-full p-4">
           <form
             action={handleSubmit}
@@ -120,6 +132,7 @@ export default function Home() {
             <div className="flex items-center border border-white rounded-3xl px-2 md:px-6 w-[200px] md:w-[400px] mt-8 md:mt-0">
               <img src="searxng.svg" alt="search" className="w-6 h-6" />
               <input
+                onClick={handleClick}
                 onChange={(e) => {
                   setPlayerTag(e.target.value);
                 }}
@@ -130,6 +143,56 @@ export default function Home() {
                 placeholder="Enter Player Tag #"
               />
             </div>
+            {suggestions ? (
+              <div className="absolute mt-[375px] ml-2 md:mt-80 md:ml-14 flex flex-col bg-slate-300 bg-opacity-95 border-2 border-blue shadow-2xl p-8 rounded-2xl">
+                <div className="flex">
+                  <h3 className="text-blue text-[22px] font-semibold mb-2">
+                    Try these out !
+                  </h3>
+                  <button
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setSuggestions(false);
+                    }}
+                    className="absolute top-2 right-2 text-[16px] text-blue hover:text-red font-extrabold"
+                  >
+                    X
+                  </button>
+                </div>
+                <div className="flex flex-col space-y-2">
+                  <button
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setPlayerTag("#R90PRV0PY");
+                      handleSuggestionClick("#R90PRV0PY");
+                    }}
+                    className="text-left border-2 border-blue-light text-blue-light  hover:border-blue-clash hover:text-blue-clash rounded-lg p-3 text-[16px] font-semibold"
+                  >
+                    Ryley
+                  </button>
+                  <button
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setPlayerTag("#YGGYQYV");
+                      handleSuggestionClick("#YGGYQYV");
+                    }}
+                    className="text-left border-2 border-blue-light text-blue-light  hover:border-blue-clash hover:text-blue-clash  rounded-lg p-3 text-[16px] font-semibold"
+                  >
+                    Juicy J
+                  </button>
+                  <button
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setPlayerTag("#GG829JGY");
+                      handleSuggestionClick("#GG829JGY");
+                    }}
+                    className="text-left  border-2 border-blue-light text-blue-light hover:border-blue-clash hover:text-blue-clash rounded-lg p-3 text-[16px] font-semibold"
+                  >
+                    SirTagCR
+                  </button>
+                </div>
+              </div>
+            ) : null}
 
             <button
               className={`w-1/3 lg:w-1/4  p-3 rounded-3xl text-white mt-8 md:mt-0 ${
@@ -201,8 +264,8 @@ export default function Home() {
                   <p className="pl-3 pt-2 font-extralight text-[15px] md:text-[17px]">
                     Clan:{" "}
                   </p>
-                  <div className="-mt-2 ml-2 flex w-full items-center justify-center">
-                    <p className="text-center text-white font-bold text-[35px]">
+                  <div className=" ml-2 flex w-full items-center justify-center">
+                    <p className="text-center text-white font-bold text-[20px] flex flex-wrap">
                       {playerData.clan?.name || "No Clan"}
                     </p>
                   </div>
