@@ -123,7 +123,7 @@ export default function Home() {
 
   return (
     <div className="flex h-screen w-screen bg-gradient-to-r from-red to-blue-clash items-center justify-center ">
-      <div className="bg-blue md:h-[550px] w-full h-screen md:w-3/4 lg:w-1/2 rounded-3xl shadow-2xl p-2 mt-2 py-2 ">
+      <div className="bg-blue md:h-[550px]  w-full md:w-3/4 lg:w-1/2 md:rounded-3xl shadow-2xl p-2 mt-12">
         <div className="SEARCH-BAR h-24 w-full p-4">
           <form
             action={handleSubmit}
@@ -235,7 +235,7 @@ export default function Home() {
             </div>
 
             <div className="flex mt-8 md:-mt-60 h-full items-center justify-center md:justify-between space-x-4 mx-3">
-              <div className="flex flex-col items-center justify-center w-1/2 lg:w-1/4 ">
+              <div className="flex flex-col items-center justify-center w-1/2 lg:w-1/4 pb-6">
                 <div className=" bg-blue-light w-full mb-4 md:mb-8 rounded-3xl  h-[80px] md:[85px]">
                   <p className="pl-3 pt-2 font-extralight text-[15px] md:text-[17px] ">
                     Wins:{" "}
@@ -247,7 +247,7 @@ export default function Home() {
                   </div>
                 </div>
 
-                <div className=" bg-blue-light w-full rounded-3xl h-[80px] md:[85px]">
+                <div className=" bg-blue-light w-full rounded-3xl h-[80px] md:[85px] pb-">
                   <p className="pl-3 pt-2 font-extralight text-[15px] md:text-[17px]">
                     Losses:{" "}
                   </p>
@@ -259,7 +259,7 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="flex flex-col items-center justify-center w-1/2 lg:w-1/4">
+              <div className="flex flex-col items-center justify-center w-1/2 lg:w-1/4 pb-6">
                 <div className=" bg-blue-light w-full mb-4 md:mb-8 rounded-3xl h-[80px] md:[85px]">
                   <p className="pl-3 pt-2 font-extralight text-[15px] md:text-[17px]">
                     Clan:{" "}
@@ -270,11 +270,11 @@ export default function Home() {
                     </p>
                   </div>
                 </div>
-                <div className=" bg-blue-light w-full rounded-3xl h-[80px] md:[85px]">
+                <div className=" bg-blue-light w-full rounded-3xl h-[80px] md:[85px] ">
                   <p className="pl-3 pt-2 font-extralight text-[15px] md:text-[17px]">
                     Trophies:{" "}
                   </p>
-                  <div className="-mt-2 ml-2 flex w-full items-center justify-center">
+                  <div className="-mt-2 ml-2 flex w-full items-center justify-center ">
                     <p className="text-center text-white font-bold text-[35px]">
                       {playerData.trophies}
                     </p>
