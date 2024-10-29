@@ -123,8 +123,8 @@ export default function Home() {
 
   return (
     <div className="flex h-screen w-screen bg-gradient-to-r from-red to-blue-clash items-center justify-center ">
-      <div className="bg-blue md:h-[550px]  w-full md:w-3/4 lg:w-1/2 md:rounded-3xl shadow-2xl p-2 mt-12">
-        <div className="SEARCH-BAR h-24 w-full p-4">
+      <div className="bg-blue md:h-[550px]  w-full min-h-[800px] md:min-h-0 md:w-3/4 lg:w-1/2 md:rounded-3xl shadow-2xl md:p-2 my-12">
+        <div className="SEARCH-BAR h-24 w-full p-4 mt-4 md:mt-2">
           <form
             action={handleSubmit}
             className="flex justify-between items-center"
